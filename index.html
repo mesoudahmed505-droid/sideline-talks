@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Sideline Talks - Live Football, Stats & Blog</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: #0d1b1e; color: #ffffff; padding-top: env(safe-area-inset-top); padding-bottom: 70px; }
+        header { position: sticky; top: 0; z-index: 1000; background-color: #123524; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #235338; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .logo { font-size: 18px; font-weight: 800; color: #4efa8b; letter-spacing: 0.5px; }
+        .live-badge { background: #ff4757; color: #fff; font-size: 10px; font-weight: bold; padding: 3px 8px; border-radius: 12px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        .container { padding: 15px; max-width: 600px; margin: auto; }
+        h2 { margin-bottom: 15px; color: #4efa8b; border-left: 4px solid #4efa8b; padding-left: 8px; font-size: 16px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .match-card { background-color: #162a26; border: 1px solid #235338; border-radius: 12px; padding: 14px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+        .match-team { display: flex; align-items: center; gap: 8px; width: 35%; }
+        .match-team.home { justify-content: flex-end; text-align: right; }
+        .match-team.away { justify-content: flex-start; text-align: left; }
+        .match-team img { width: 24px; height: 24px; object-fit: contain; }
+        .match-team span { font-size: 12px; font-weight: bold; }
+        .match-details { text-align: center; width: 30%; }
+        .match-score { font-size: 16px; font-weight: bold; color: #4efa8b; background: #0d1b1e; padding: 4px 8px; border-radius: 6px; display: inline-block; }
+        .match-status { font-size: 10px; font-weight: bold; margin-top: 4px; }
+        .status-live { color: #ff4757; }
+        .status-upcoming { color: #eccc68; }
+        .status-ft { color: #a4b0be; }
+        table { width: 100%; border-collapse: collapse; background-color: #162a26; border-radius: 10px; overflow: hidden; }
+        th, td { padding: 10px 6px; text-align: center; font-size: 12px; }
+        th { background-color: #123524; color: #4efa8b; }
+        tr:nth-child(even) { background-color: #1c3530; }
+        .team-cell { display: flex; align-items: center; gap: 8px; text-align: left; }
+        .team-crest { width: 18px; height: 18px; object-fit: contain; }
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
+        .stat-box { background-color: #162a26; border: 1px solid #235338; border-radius: 10px; padding: 12px; text-align: center; }
+        .stat-number { font-size: 20px; font-weight: bold; color: #4efa8b; margin-top: 4px; }
+        .stat-label { font-size: 10px; color: #b0c4b1; text-transform: uppercase; }
+        .news-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        .news-card { background-color: #162a26; border-radius: 10px; overflow: hidden; border: 1px solid #235338; }
+        .news-card img { width: 100%; height: 140px; object-fit: cover; }
+        .news-content { padding: 12px; }
+        .news-tag { background-color: #4efa8b; color: #0d1b1e; font-size: 9px; font-weight: bold; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
+        .news-title { font-size: 14px; font-weight: bold; margin: 6px 0; color: #ffffff; }
+        .news-desc { font-size: 11px; color: #b0c4b1; margin-bottom: 8px; line-height: 1.4; }
+        .news-date { font-size: 10px; color: #6c8e74; }
+        .about-box { background-color: #162a26; border: 1px solid #235338; border-radius: 10px; padding: 16px; font-size: 12px; line-height: 1.6; color: #cbd5e1; }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background-color: #123524; border-top: 1px solid #235338; display: flex; justify-content: space-around; padding: 8px 0 env(safe-area-inset-bottom); z-index: 1000; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: #8da494; background: none; border: none; font-size: 10px; font-weight: bold; cursor: pointer; gap: 3px; width: 20%; }
+        .nav-item .icon { font-size: 16px; }
+        .nav-item.active { color: #4efa8b; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">⚽ SIDELINE TALKS</div>
+        <div class="live-badge">LIVE APP</div>
+    </header>
+    <div class="container">
+        <div id="tab-matches" class="tab-content active">
+            <h2>Live & Matches</h2>
+            <div id="matches-container"></div>
+        </div>
+        <div id="tab-table" class="tab-content">
+            <h2>EPL Standings</h2>
+            <table>
+                <thead>
+                    <tr><th>#</th><th style="text-align: left;">Club</th><th>MP</th><th>GD</th><th>Pts</th></tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+        <div id="tab-stats" class="tab-content">
+            <h2>Data & Analytics</h2>
+            <div class="stats-grid">
+                <div class="stat-box"><div class="stat-label">Total Matches</div><div class="stat-number">380</div></div>
+                <div class="stat-box"><div class="stat-label">Total Goals</div><div class="stat-number">1,089</div></div>
+                <div class="stat-box"><div class="stat-label">Avg Goals / Match</div><div class="stat-number">2.87</div></div>
+                <div class="stat-box"><div class="stat-label">Clean Sheets</div><div class="stat-number">142</div></div>
+            </div>
+            <h2>Top Performers</h2>
+            <table>
+                <thead><tr><th>#</th><th style="text-align: left;">Player</th><th style="text-align: left;">Club</th><th>Stat</th></tr></thead>
+                <tbody id="scorers-body"></tbody>
+            </table>
+        </div>
+        <div id="tab-news" class="tab-content">
+            <h2>Articles & Blog</h2>
+            <div id="news-container" class="news-grid"></div>
+        </div>
+        <div id="tab-about" class="tab-content">
+            <h2>About Sideline Talks</h2>
+            <div class="about-box">
+                <p>Welcome to <b>Sideline Talks</b> – your premier mobile-first web app for real-time football updates, standings, data analytics, and football journalism.</p>
+                <br>
+                <p><b>Features:</b></p>
+                <p>• Real-time match status</p>
+                <p>• Complete league metrics</p>
+                <p>• Tactical articles & transfer updates</p>
+            </div>
+        </div>
+    </div>
+    <nav class="bottom-nav">
+        <button id="nav-matches" class="nav-item active" onclick="switchTab('matches')"><span class="icon">⚽</span><span>Matches</span></button>
+        <button id="nav-table" class="nav-item" onclick="switchTab('table')"><span class="icon">🏆</span><span>Table</span></button>
+        <button id="nav-stats" class="nav-item" onclick="switchTab('stats')"><span class="icon">📊</span><span>Stats</span></button>
+        <button id="nav-news" class="nav-item" onclick="switchTab('news')"><span class="icon">📰</span><span>Blog</span></button>
+        <button id="nav-about" class="nav-item" onclick="switchTab('about')"><span class="icon">ℹ️</span><span>About</span></button>
+    </nav>
+    <script src="script.js"></script>
+</body>
+</html>
+
