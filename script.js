@@ -9,7 +9,7 @@ const firebaseConfig = {
   measurementId: "G-MENSQW55S4"
 };
 
-// Initialize Firebase
+// Initialize Firebase safely
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
@@ -20,9 +20,9 @@ function loadNews() {
     const newsFeed = document.getElementById("newsFeed");
     if (!newsFeed) return;
 
-    db.collection("news").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+    db.collection("news").onSnapshot((snapshot) => {
         if (snapshot.empty) {
-            newsFeed.innerHTML = "<p class='loading-msg'>ምንም የተለቀቀ ዜና አልተገኘም። ከ Admin Panel ይልቀቁ!</p>";
+            newsFeed.innerHTML = "<p class='loading-msg'>ምንም የተለቀቀ ዜና አልተገኘም። እባክዎን ከ Admin Panel ይልቀቁ!</p>";
             return;
         }
 
@@ -51,7 +51,7 @@ function loadNews() {
         newsFeed.innerHTML = htmlContent;
     }, (error) => {
         console.error("Error fetching news: ", error);
-        newsFeed.innerHTML = "<p class='loading-msg' style='color:red;'>ዜናዎችን መጫን አልተቻለም። Rules ማስተካከልዎን ያረጋግጡ!</p>";
+        newsFeed.innerHTML = "<p class='loading-msg' style='color:red;'>ዜናዎችን መጫን አልተቻለም። እባክዎን የ Firebase Rules ማስተካከልዎን ያረጋግጡ!</p>";
     });
 }
 
