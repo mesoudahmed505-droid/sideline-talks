@@ -9,6 +9,20 @@
 </head>
 <body>
 
+    <!-- Top Bar with Language Selector -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="welcome-msg">
+                <span><i class="fa-solid fa-bolt"></i> እንኳን ወደ Sideline Talks በደህና መጡ!</span>
+            </div>
+            <div class="lang-selector">
+                <i class="fa-solid fa-globe"></i>
+                <span class="lang-label">Language / ቋንቋ:</span>
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Header Navigation -->
     <header class="navbar">
         <div class="nav-container">
@@ -16,8 +30,8 @@
                 <a href="#" class="logo">Sideline <span>Talks</span></a>
                 <nav class="nav-links">
                     <a href="#home" class="active">መነሻ</a>
-                    <a href="#about">ስለ እኛ (About)</a>
-                    <a href="#contact">ግንኙነት (Contact)</a>
+                    <a href="#about">ስለ እኛ</a>
+                    <a href="#contact">ግንኙነት</a>
                 </nav>
             </div>
             
@@ -42,12 +56,8 @@
     </div>
 
     <!-- Main Layout Container -->
-    <div class="main-container">
-        
-        <!-- Main Content Area -->
+    <div class="main-container" id="home">
         <main class="content-area">
-            
-            <!-- Hero Featured Post -->
             <section class="hero-card">
                 <div class="hero-tag">ሰበር ዜና</div>
                 <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" alt="Football News">
@@ -61,12 +71,9 @@
                 </div>
             </section>
 
-            <!-- Latest News Grid Section -->
             <section class="latest-news">
                 <h3 class="section-title">አዳዲስ የኳስ መረጃዎች</h3>
-                
                 <div class="news-grid" id="newsFeed">
-                    <!-- News Item 1 -->
                     <article class="news-card">
                         <div class="card-img">
                             <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=500" alt="News Image">
@@ -81,7 +88,6 @@
                         </div>
                     </article>
 
-                    <!-- News Item 2 -->
                     <article class="news-card">
                         <div class="card-img">
                             <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500" alt="News Image">
@@ -98,44 +104,41 @@
                 </div>
             </section>
 
-            <!-- About Section Modal/Area -->
             <section id="about" class="about-section">
                 <h3 class="section-title">ስለ Sideline Talks</h3>
                 <div class="about-card">
-                    <p>እንኳን ወደ <strong>Sideline Talks</strong> በደህና መጡ! እዚህ ቦታ ታማኝ፣ ፈጣን እና ትክክለኛ የሆኑ የስፖርት መረጃዎችን፣ የዝውውር ዜናዎችን እና የጨዋታ تحلیلዎችን ያገኛሉ።</p>
+                    <p>እንኳን ወደ <strong>Sideline Talks</strong> በደህና መጡ! እዚህ ቦታ ታማኝ፣ ፈጣን እና ትክክለኛ የሆኑ የስፖርት መረጃዎችን ያገኛሉ።</p>
                 </div>
             </section>
-
         </main>
 
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="widget trending-widget">
                 <h4 class="widget-title">🔥 ተወዳጅ ዜናዎች</h4>
                 <ul class="trending-list">
-                    <li>
-                        <span class="num">1</span>
-                        <a href="#">የኪሊያን ምባፔ አዲስ የጎል ማስቆጠር ሪከርድ...</a>
-                    </li>
-                    <li>
-                        <span class="num">2</span>
-                        <a href="#">የማንችስተር ዩናይትድ የጉዳት መረጃዎች...</a>
-                    </li>
-                    <li>
-                        <span class="num">3</span>
-                        <a href="#">የቻምፒየንስ ሊግ ድልድል መቼ ይወጣል?</a>
-                    </li>
+                    <li><span class="num">1</span> <a href="#">የኪሊያን ምባፔ አዲስ የጎል ማስቆጠር ሪከርድ...</a></li>
+                    <li><span class="num">2</span> <a href="#">የማንችስተር ዩናይትድ የጉዳት መረጃዎች...</a></li>
+                    <li><span class="num">3</span> <a href="#">የቻምፒየንስ ሊግ ድልድል መቼ ይወጣል?</a></li>
                 </ul>
             </div>
         </aside>
-
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <p>&copy; 2026 Sideline Talks. መብቱ በህግ የተጠበቀ ነው::</p>
     </footer>
 
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'am',
+                includedLanguages: 'am,en,es,fr,ar,om,ti,so,de,it,pt',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="script.js"></script>
 </body>
 </html>
