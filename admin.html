@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sideline Talks - Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .admin-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid #334155;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.7rem;
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #fff;
+            outline: none;
+            font-size: 0.9rem;
+        }
+        .btn-post {
+            background-color: var(--primary);
+            color: #000;
+            font-weight: bold;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .btn-post:hover {
+            opacity: 0.9;
+        }
+        #statusMsg {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        <h2><i class="fa-solid fa-pen-to-square"></i> Post Football News</h2>
+        <br>
+        <form id="newsForm">
+            <div class="form-group">
+                <label>News Title (ርዕስ)</label>
+                <input type="text" id="title" placeholder="Enter headline..." required>
+            </div>
+
+            <div class="form-group">
+                <label>Category (ምድብ)</label>
+                <select id="category">
+                    <option value="Transfer">Transfer</option>
+                    <option value="Premier League">Premier League</option>
+                    <option value="La Liga">La Liga</option>
+                    <option value="Champions League">Champions League</option>
+                    <option value="Serie A">Serie A</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Image URL (የፎቶ ሊንክ)</label>
+                <input type="url" id="imageUrl" placeholder="https://example.com/image.jpg">
+            </div>
+
+            <div class="form-group">
+                <label>Time Tag (ጊዜ)</label>
+                <input type="text" id="time" placeholder="e.g. 10 mins ago, Just in" required>
+            </div>
+
+            <div class="form-group">
+                <label>Content (ዝርዝር መረጃ)</label>
+                <textarea id="content" rows="5" placeholder="Write full news details..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-post"><i class="fa-solid fa-paper-plane"></i> Publish News</button>
+        </form>
+        <div id="statusMsg"></div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyBL-9d5X1HSB5ktvu4O4pWNyq401HrHxaQ",
+          authDomain: "sideline-talks.firebaseapp.com",
+          projectId: "sideline-talks",
+          storageBucket: "sideline-talks.firebasestorage.app",
+          messagingSenderId: "851953628657",
+          appId: "1:851953628657:web:adbc00af1a1351878ec050",
+          measurementId: "G-MENSQW55S4"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        const newsForm = document.getElementById('newsForm');
+        const statusMsg = document.getElementById('statusMsg');
+
+        newsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const category = document.getElementById('category').value;
+            const imageUrl = document.getElementById('imageUrl').value || 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=500';
+            const time = document.getElementById('time').value;
+            const content = document.getElementById('content').value;
+
+            statusMsg.style.color = '#10b981';
+            statusMsg.innerText = "Publishing news...";
+
+            db.collection("news").add({
+                title: title,
+                category: category,
+                imageUrl: imageUrl,
+                time: time,
+                content: content,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => {
+                statusMsg.style.color = '#10b981';
+                statusMsg.innerText = "✅ News published successfully!";
+                newsForm.reset();
+            })
+            .catch((error) => {
+                statusMsg.style.color = '#ef4444';
+                statusMsg.innerText = "❌ Error: " + error.message;
+            });
+        });
+    </script>
+</body>
+</html>
