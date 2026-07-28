@@ -1,138 +1,185 @@
 <!DOCTYPE html>
-<html lang="am">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sideline Talks - የኳስ አዳዲስ መረጃዎች</title>
+    <title>Sideline Talks - Ultimate Football News & Updates</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Top Bar with Language Selector -->
+    <!-- Top Utility Bar -->
     <div class="top-bar">
         <div class="top-bar-container">
             <div class="welcome-msg">
-                <span><i class="fa-solid fa-bolt"></i> እንኳን ወደ Sideline Talks በደህና መጡ!</span>
+                <span><i class="fa-solid fa-futbol"></i> Welcome to Sideline Talks | Live Football Updates</span>
             </div>
             <div class="lang-selector">
-                <i class="fa-solid fa-globe"></i>
-                <span class="lang-label">Language / ቋንቋ:</span>
+                <i class="fa-solid fa-language"></i>
+                <span class="lang-label">Translate:</span>
                 <div id="google_translate_element"></div>
             </div>
         </div>
     </div>
 
-    <!-- Header Navigation -->
+    <!-- Header & Navigation -->
     <header class="navbar">
         <div class="nav-container">
             <div class="nav-left">
-                <a href="#" class="logo">Sideline <span>Talks</span></a>
-                <nav class="nav-links">
-                    <a href="#home" class="active">መነሻ</a>
-                    <a href="#about">ስለ እኛ</a>
-                    <a href="#contact">ግንኙነት</a>
-                </nav>
+                <a href="#" class="logo"><i class="fa-solid fa-trophy"></i> Sideline <span>Talks</span></a>
             </div>
-            
             <div class="nav-right">
                 <div class="search-box">
-                    <input type="text" placeholder="ዜና ፈልግ...">
+                    <input type="text" placeholder="Search news, teams, transfers...">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Categories Sub-Menu -->
+    <!-- Sub Navigation Bar -->
     <div class="sub-nav">
         <div class="sub-container">
-            <a href="#">Premier League</a>
-            <a href="#">La Liga</a>
-            <a href="#">Champions League</a>
-            <a href="#">Transfer News</a>
-            <a href="#">Serie A</a>
+            <a href="#"><i class="fa-solid fa-crown"></i> Premier League</a>
+            <a href="#"><i class="fa-solid fa-shield-halved"></i> La Liga</a>
+            <a href="#"><i class="fa-solid fa-star"></i> Champions League</a>
+            <a href="#"><i class="fa-solid fa-arrows-rotate"></i> Transfers</a>
+            <a href="#"><i class="fa-solid fa-shirt"></i> Serie A</a>
         </div>
     </div>
 
-    <!-- Main Layout Container -->
-    <div class="main-container" id="home">
-        <main class="content-area">
+    <!-- Main Layout Grid (Left Menu + Content + Right Sidebar) -->
+    <div class="main-layout">
+        
+        <!-- LEFT SIDEBAR MENU -->
+        <aside class="left-sidebar">
+            <div class="sidebar-box">
+                <h4 class="box-title"><i class="fa-solid fa-compass"></i> Navigation</h4>
+                <ul class="side-menu-links">
+                    <li><a href="#home" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="#latest"><i class="fa-solid fa-newspaper"></i> Latest News</a></li>
+                    <li><a href="#matches"><i class="fa-solid fa-stopwatch"></i> Live Scores</a></li>
+                    <li><a href="#transfers"><i class="fa-solid fa-right-left"></i> Transfer Center</a></li>
+                    <li><a href="#about"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                    <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- About Section Box in Left Menu -->
+            <div class="sidebar-box about-box" id="about">
+                <h4 class="box-title"><i class="fa-solid fa-circle-info"></i> About Sideline Talks</h4>
+                <p><strong>Sideline Talks</strong> delivers real-time football news, transfer rumors, in-depth match analysis, and exclusive insights from top leagues worldwide.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Live Match Quick Score Widget -->
+            <div class="sidebar-box score-widget">
+                <h4 class="box-title"><i class="fa-solid fa-satellite-dish"></i> Quick Score</h4>
+                <div class="match-mini">
+                    <div class="team">Arsenal <span>2</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team">Chelsea <span>1</span></div>
+                </div>
+                <span class="live-badge"><i class="fa-solid fa-circle-dot red-dot"></i> LIVE 78'</span>
+            </div>
+        </aside>
+
+        <!-- CENTER MAIN CONTENT -->
+        <main class="main-content" id="home">
+            
+            <!-- Hero Featured News -->
             <section class="hero-card">
-                <div class="hero-tag">ሰበር ዜና</div>
-                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" alt="Football News">
+                <div class="hero-tag"><i class="fa-solid fa-bolt"></i> BREAKING</div>
+                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" alt="Football Pitch">
                 <div class="hero-overlay">
-                    <h2>የእንግሊዝ ፕሪሚየር ሊግ አዲስ የውድድር ዘመን ዝግጅት በደመቀ ሁኔታ ተጀምሯል</h2>
-                    <p>በዛሬው እለት የተደረጉ የዝግጅት ጨዋታዎች ውጤት እና የተጫዋቾች ዝውውር መረጃዎች...</p>
+                    <h2>Premier League Pre-Season Kicks Off with Thrilling Fixtures and Big Wins</h2>
+                    <p>Teams gear up for the upcoming season with intense tactical preparations and key transfer debuts across major friendlies...</p>
                     <div class="meta-info">
-                        <span><i class="fa-regular fa-clock"></i> ከ 1 ሰአት በፊት</span>
-                        <span><i class="fa-solid fa-user"></i> በ Admin</span>
+                        <span><i class="fa-regular fa-clock"></i> 1 hour ago</span>
+                        <span><i class="fa-solid fa-user-pen"></i> By Editor</span>
                     </div>
                 </div>
             </section>
 
-            <section class="latest-news">
-                <h3 class="section-title">አዳዲስ የኳስ መረጃዎች</h3>
-                <div class="news-grid" id="newsFeed">
+            <!-- Latest News Grid -->
+            <section class="latest-news" id="latest">
+                <h3 class="section-title"><i class="fa-solid fa-fire"></i> Trending Headlines</h3>
+                
+                <div class="news-grid">
                     <article class="news-card">
                         <div class="card-img">
-                            <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=500" alt="News Image">
+                            <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=500" alt="Football Transfer">
                             <span class="category">Transfer</span>
                         </div>
                         <div class="card-body">
-                            <h4>የአርሰናል አዲሱ የዝውውር ጥረት እና የዝርዝር መረጃዎች</h4>
-                            <p>አርሰናል የአማካይ ክፍሉን ለማጠናከር አዲስ ተጫዋች ለማስፈረም ድርድር ጀምሯል።</p>
+                            <h4>Arsenal Push Forward for Midfield Target in Major Summer Deal</h4>
+                            <p>Negotiations are reportedly progressing as the club aims to finalize key agreements before the deadline.</p>
                             <div class="meta-info">
-                                <span><i class="fa-regular fa-clock"></i> ከ 3 ሰአት በፊት</span>
+                                <span><i class="fa-regular fa-clock"></i> 3 hours ago</span>
                             </div>
                         </div>
                     </article>
 
                     <article class="news-card">
                         <div class="card-img">
-                            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500" alt="News Image">
+                            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=500" alt="La Liga">
                             <span class="category">La Liga</span>
                         </div>
                         <div class="card-body">
-                            <h4>ሪያል ማድሪድ ለቀጣዩ ጨዋታ ያደረገው ልምምድ</h4>
-                            <p>ቡድኑ ሙሉ አካላዊ ብቃቱን ለማሳደግ ጠንካራ ልምምዶችን መስራቱን ቀጥሏል።</p>
+                            <h4>Real Madrid Intensify Training Ahead of Upcoming Domestic Opener</h4>
+                            <p>The squad demonstrates high intensity in tactical sessions following successful international tours.</p>
                             <div class="meta-info">
-                                <span><i class="fa-regular fa-clock"></i> ከ 5 ሰአት በፊት</span>
+                                <span><i class="fa-regular fa-clock"></i> 5 hours ago</span>
                             </div>
                         </div>
                     </article>
                 </div>
             </section>
 
-            <section id="about" class="about-section">
-                <h3 class="section-title">ስለ Sideline Talks</h3>
-                <div class="about-card">
-                    <p>እንኳን ወደ <strong>Sideline Talks</strong> በደህና መጡ! እዚህ ቦታ ታማኝ፣ ፈጣን እና ትክክለኛ የሆኑ የስፖርት መረጃዎችን ያገኛሉ።</p>
-                </div>
-            </section>
         </main>
 
-        <aside class="sidebar">
-            <div class="widget trending-widget">
-                <h4 class="widget-title">🔥 ተወዳጅ ዜናዎች</h4>
-                <ul class="trending-list">
-                    <li><span class="num">1</span> <a href="#">የኪሊያን ምባፔ አዲስ የጎል ማስቆጠር ሪከርድ...</a></li>
-                    <li><span class="num">2</span> <a href="#">የማንችስተር ዩናይትድ የጉዳት መረጃዎች...</a></li>
-                    <li><span class="num">3</span> <a href="#">የቻምፒየንስ ሊግ ድልድል መቼ ይወጣል?</a></li>
+        <!-- RIGHT SIDEBAR -->
+        <aside class="right-sidebar">
+            <div class="sidebar-box">
+                <h4 class="box-title"><i class="fa-solid fa-chart-line"></i> Top Stories</h4>
+                <ul class="top-list">
+                    <li>
+                        <span class="rank">1</span>
+                        <a href="#">Mbappe breaks scoring milestone in latest fixture...</a>
+                    </li>
+                    <li>
+                        <span class="rank">2</span>
+                        <a href="#">Manchester United injury updates ahead of weekend...</a>
+                    </li>
+                    <li>
+                        <span class="rank">3</span>
+                        <a href="#">Champions League draw date & official qualified teams...</a>
+                    </li>
                 </ul>
             </div>
         </aside>
+
     </div>
 
+    <!-- Footer -->
     <footer class="footer" id="contact">
-        <p>&copy; 2026 Sideline Talks. መብቱ በህግ የተጠበቀ ነው::</p>
+        <div class="footer-container">
+            <p>&copy; 2026 <strong>Sideline Talks</strong>. All rights reserved.</p>
+        </div>
     </footer>
 
+    <!-- Google Translate Script -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
-                pageLanguage: 'am',
-                includedLanguages: 'am,en,es,fr,ar,om,ti,so,de,it,pt',
+                pageLanguage: 'en',
+                includedLanguages: 'am,en,es,fr,ar,om,ti,so,de,it,pt,ru,zh-CN',
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                 autoDisplay: false
             }, 'google_translate_element');
@@ -142,4 +189,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
